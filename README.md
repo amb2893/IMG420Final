@@ -85,4 +85,5 @@ The minimal HUD keeps the player's view unobstructed, supporting navigation and 
 - Visual and structural inspiration from DOOM (1993)
 
 ## Demo Video  
+[Watch the demo on YouTube](https://www.youtube.com/watch?v=tXHygVZpUFc)
 
