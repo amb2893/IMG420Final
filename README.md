@@ -35,8 +35,6 @@ The matrix is passed to the environment builder, which iterates through the grid
 - Integration with Godot’s node and scene system  
 - Modular architecture supporting rapid iteration
 
-## Screenshots and GIFs  
-*(Insert screenshots or GIFs here)*
 
 ## Installation and Build Instructions  
 
@@ -87,4 +85,4 @@ The minimal HUD keeps the player's view unobstructed, supporting navigation and 
 - Visual and structural inspiration from DOOM (1993)
 
 ## Demo Video  
-*(Insert link to demo video here)*
+
