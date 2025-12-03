@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://orqr6lja7kra"]
+
+[ext_resource type="PackedScene" uid="uid://cxrxoeab35fk0" path="res://game.tscn" id="1_x4ny2"]
+[ext_resource type="PackedScene" uid="uid://ctuqeqbbucpxp" path="res://start_end_screen.tscn" id="2_x4ny2"]
+
+[node name="StartEndMainGame" type="Node2D"]
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="GameScene" parent="Game" instance=ExtResource("1_x4ny2")]
+
+[node name="StartEndScreen" parent="." instance=ExtResource("2_x4ny2")]

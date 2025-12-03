@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxrxoeab35fk0"]
+
+[ext_resource type="Texture2D" uid="uid://3tq8rrb88fo6" path="res://icon.svg" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://1ol5pyl0vyrt" path="res://Player.cs" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://b4v8o2t64m6ds" path="res://Hazard.cs" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://bmjanhn85smhv" path="res://orange4.png" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://dxloeekpuvrlc" path="res://HUD.cs" id="5_7jktm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2o6t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_feb5d"]
+distance = -521.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(110, 113)
+
+[node name="Game" type="Node2D"]
+
+[node name="PlayerNode" type="Sprite2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="PlayerNode"]
+position = Vector2(86.00001, 422.00003)
+scale = Vector2(0.32, 0.27999997)
+script = ExtResource("1_e2o6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
+position = Vector2(-2.3841858e-05, 3.5713174)
+scale = Vector2(-6.499427, 7.2612696)
+shape = SubResource("CircleShape2D_e2o6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerNode/Player"]
+texture = ExtResource("1_80nbo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 350)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(84, -36)
+shape = SubResource("WorldBoundaryShape2D_feb5d")
+
+[node name="Hazard" type="Area2D" parent="."]
+script = ExtResource("3_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(493, 408)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard"]
+position = Vector2(497, 410)
+scale = Vector2(29.960009, 28.999994)
+texture = ExtResource("4_fc0e3")
+
+[node name="Label" type="Label" parent="Hazard"]
+offset_left = 474.0
+offset_top = 377.0
+offset_right = 522.0
+offset_bottom = 452.0
+text = "Touch
+to 
+DIE"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_7jktm")
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(5.5200005, 3.7600007)
