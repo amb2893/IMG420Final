@@ -1,6 +1,211 @@
-[gd_scene load_steps=2 format=3 uid="uid://cosyvaeyanxwt"]
+[gd_scene load_steps=6 format=3 uid="uid://cosyvaeyanxwt"]
 
 [ext_resource type="Script" uid="uid://d28pssr177vst" path="res://Main.cs" id="1_ig7tw"]
+[ext_resource type="FontFile" uid="uid://bge4ysyoxx10n" path="res://fonts/Doom2016Left-RpJDA.ttf" id="2_doom_left"]
+[ext_resource type="FontFile" uid="uid://bjho0w5ig1qcv" path="res://fonts/Doom2016Right-VGz0z.ttf" id="3_doom_right"]
+[ext_resource type="FontFile" uid="uid://bhhxps178lph3" path="res://fonts/Doom2016Text-GOlBq.ttf" id="4_doom_text"]
+[ext_resource type="AudioStream" uid="uid://cdt0n81nsuggp" path="res://sound/21. E3M3 - Deep Intro The Code.mp3" id="5_music"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("StartPanel", "WinPanel", "StartButton", "RestartButton", "QuitButton", "MusicPlayer")]
 script = ExtResource("1_ig7tw")
+StartPanel = NodePath("UI/Start Panel")
+WinPanel = NodePath("UI/Win Panel")
+StartButton = NodePath("UI/Start Panel/VBoxContainer/Start Button")
+RestartButton = NodePath("UI/Win Panel/VBoxContainer/Buttons/Restart Button")
+QuitButton = NodePath("UI/Win Panel/VBoxContainer/Buttons/Quit Button")
+MusicPlayer = NodePath("MusicPlayer")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Start Panel" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.08, 0.98)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Start Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title Label" type="RichTextLabel" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.15, 0.05, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_doom_left")
+theme_override_fonts/bold_font = ExtResource("3_doom_right")
+theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/bold_font_size = 96
+bbcode_enabled = true
+text = "[center]ESC [b]APE[/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Spacer1" type="Control" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Objective Label" type="RichTextLabel" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.9, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("4_doom_text")
+theme_override_fonts/bold_font = ExtResource("4_doom_text")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+text = "[center]COLLECT [b]ALL[/b] 3 [b]KEYS[/b] TO [b]ESCAPE![/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Spacer2" type="Control" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Controls Label" type="RichTextLabel" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.4, 0.7, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("4_doom_text")
+theme_override_fonts/bold_font = ExtResource("4_doom_text")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[center]CONTROLS:
+
+Look [b]Left[/b] - [b]A,[/b] Left [b]Arrow[/b]
+Look [b]Right[/b] - [b]D,[/b] Right [b]Arrow[/b]
+Move [b]Forward[/b] - [b]W,[/b] Up [b]Arrow[/b]
+Move [b]Backwards[/b] - [b]S,[/b] Down [b]Arrow[/b]
+Strafe [b]Left[/b] - [b]Q[/b]
+Strafe [b]Right[/b] - [b]E[/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Spacer3" type="Control" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Start Button" type="Button" parent="UI/Start Panel/VBoxContainer"]
+custom_minimum_size = Vector2(350, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(1, 0.4, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.15, 0.05, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0.1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_doom_right")
+theme_override_font_sizes/font_size = 42
+text = "START"
+
+[node name="Win Panel" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.02, 0.02, 0.98)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Win Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win Label" type="RichTextLabel" parent="UI/Win Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.15, 0.05, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_doom_left")
+theme_override_fonts/bold_font = ExtResource("3_doom_right")
+theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/bold_font_size = 96
+bbcode_enabled = true
+text = "[center]LEVEL [b]COMPLETE[/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Spacer1" type="Control" parent="UI/Win Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Message Label" type="RichTextLabel" parent="UI/Win Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.9, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("4_doom_text")
+theme_override_fonts/bold_font = ExtResource("4_doom_text")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+bbcode_enabled = true
+text = "[center]ALL [b]KEYS[/b] COLLECTED!
+YOU [b]HAVE[/b] ESCAPED [b]THE[/b] MAZE![/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Spacer2" type="Control" parent="UI/Win Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="UI/Win Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Restart Button" type="Button" parent="UI/Win Panel/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(280, 80)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.9, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.15, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_doom_right")
+theme_override_font_sizes/font_size = 36
+text = "RESTART"
+
+[node name="Quit Button" type="Button" parent="UI/Win Panel/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(280, 80)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.6, 0.85, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.4, 0.7, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.15, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_doom_right")
+theme_override_font_sizes/font_size = 36
+text = "QUIT"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_music")

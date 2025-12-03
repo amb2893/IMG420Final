@@ -20,8 +20,8 @@ class DoomRaycaster : public Node2D{
         float player_angle = 0.0f;
         
         // Rendering settings
-        int screen_width = 800;
-        int screen_height = 600;
+        int screen_width = 1152;
+        int screen_height = 648;
         float fov = 60.0f;
         float render_distance = 20.0f;
         
@@ -33,8 +33,11 @@ class DoomRaycaster : public Node2D{
         // Textures
         Ref<Image> wall_texture;
         Ref<Image> floor_texture;
-        Ref<Image> ceiling_texture;
+        Ref<Image> ceiling_texture; // Now used as skybox cylinder
         Ref<Image> key_texture;
+        
+        // Skybox settings
+        float skybox_radius = 10.0f;
         
         // Movement
         float move_speed = 3.0f;
@@ -50,6 +53,7 @@ class DoomRaycaster : public Node2D{
         int get_map_value(int x, int y);
         Color sample_texture(Ref<Image> texture, float u, float v);
         void render_billboard(int screen_x, float distance, Vector2 billboard_pos, Ref<Image> texture);
+        void render_skybox_cylinder(float ray_angle, int x, int ceiling_end, int sky_tex_width, int sky_tex_height);
 
     protected:
         static void _bind_methods();
@@ -81,7 +85,7 @@ class DoomRaycaster : public Node2D{
         // Textures
         void set_wall_texture(Ref<Image> p_texture);
         void set_floor_texture(Ref<Image> p_texture);
-        void set_ceiling_texture(Ref<Image> p_texture);
+        void set_ceiling_texture(Ref<Image> p_texture); // Skybox cylinder
         void set_key_texture(Ref<Image> p_texture);
         
         // Clear textures (revert to colors)
@@ -93,6 +97,9 @@ class DoomRaycaster : public Node2D{
         // Movement settings
         void set_move_speed(float p_speed);
         void set_rotation_speed(float p_speed);
+        
+        // Skybox settings
+        void set_skybox_radius(float p_radius);
 };
 
 #endif // DOOM_RAYCASTER_H

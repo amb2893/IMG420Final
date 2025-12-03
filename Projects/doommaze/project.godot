@@ -13,7 +13,11 @@ config_version=5
 config/name="DoomMaze"
 run/main_scene="uid://cosyvaeyanxwt"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://textures/icon.svg"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [dotnet]
 
